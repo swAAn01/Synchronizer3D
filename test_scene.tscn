@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2lxvywgmehyr"]
+
+[ext_resource type="Script" uid="uid://clploqc1qglnp" path="res://test_scene.gd" id="1_uhqqe"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uhqqe"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_ia1lp"]
+sky_material = SubResource("ProceduralSkyMaterial_uhqqe")
+
+[sub_resource type="Environment" id="Environment_sasra"]
+background_mode = 2
+sky = SubResource("Sky_ia1lp")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="TestScene" type="Node"]
+script = ExtResource("1_uhqqe")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sasra")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HostButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "HOST"
+
+[node name="JoinButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "JOIN"
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+size = Vector3(15, 1, 14)
+
+[node name="Players" type="Node3D" parent="."]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Players"]
+_spawnable_scenes = PackedStringArray("uid://bs72ogkvdd7d6")
+spawn_path = NodePath("..")

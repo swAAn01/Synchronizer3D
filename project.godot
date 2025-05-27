@@ -11,4 +11,5 @@ config_version=5
 [application]
 
 config/name="Synchronizer3D"
+run/main_scene="uid://d2lxvywgmehyr"
 config/features=PackedStringArray("4.4", "Forward Plus")

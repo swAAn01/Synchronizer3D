@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://crjc02yoxld0i"]
+
+[ext_resource type="Script" uid="uid://bffl7ittuayi5" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="PackedScene" uid="uid://b1emkp5k6stml" path="res://synchronizer_3d.tscn" id="2_onrkg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sh265"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4flbx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_4flbx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = SubResource("StandardMaterial3D_sh265")
+mesh = SubResource("CapsuleMesh_4flbx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_onrkg")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64883, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+
+[node name="Synchronizer3D" parent="." instance=ExtResource("2_onrkg")]
