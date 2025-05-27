@@ -135,8 +135,8 @@ func _on_timer_timeout() -> void:
 ## Send initial property updates to joining peers.
 func _on_peer_connected(peer_id: int) -> void:
 	if is_multiplayer_authority():
-		if synchronize_position: update_pos.rpc_id(peer_id, sync_node.global_position)
-		if synchronize_rotation: update_rot.rpc_id(peer_id, sync_node.quaternion.get_euler())
+		if synchronize_position: force_position.rpc_id(peer_id, sync_node.global_position)
+		if synchronize_rotation: force_rotation.rpc_id(peer_id, sync_node.quaternion.get_euler())
 
 
 ## RPC to update position on non-authority peers.
