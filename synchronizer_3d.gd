@@ -11,7 +11,7 @@ class_name Synchronizer3D extends Node
 ## [b]How it Works[/b]:[br]
 ## Every update interval, the authority node will check [member sync_node] for property changes.
 ## If changes exist, the authority will send an update to each other connected peer.
-## Non-authority peers will interpolate/extrapolate between receive updates if enabled.[br][br]
+## Non-authority peers will interpolate/extrapolate between received updates if enabled.[br][br]
 ## [b]How to Use[/b]:[br]
 ## To use [Synchronizer3D] simply add it as a child of the node you wish to synchronize properties for,
 ## and configure it in the inspector. You can specify which properties to synchronize,
