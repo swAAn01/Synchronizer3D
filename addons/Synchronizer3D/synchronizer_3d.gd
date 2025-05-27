@@ -38,7 +38,6 @@ class_name Synchronizer3D extends Node
 
 
 const SYNC_NODE_ERR_MSG := "SYNC_NODE must be Node3D."
-const FORCE_UPDATE_WARN_MSG := "force_update() should only be called by the authority."
 ## When using [constant UPDATE_MODE_IDLE], it's hard to know what interval peers should expect
 ## since it is dependent on the authority peer's framerate. So we just estimate here that
 ## we'll be receiving 60 updates per second.
@@ -280,7 +279,7 @@ func get_weight(delta: float) -> float:
 ## the [member sync_node]. Uses [constant MultiplayerPeer.TRANSFER_MODE_RELIABLE], so use sparingly.
 func force_update() -> void:
 	if synchronize_position: force_position.rpc(sync_node.global_position)
-	if synchronize_rotation: pass
+	if synchronize_rotation: force_rotation.rpc(sync_node.quaternion.get_euler())
 
 
 ## Used by [method force_update] to force a position update.
