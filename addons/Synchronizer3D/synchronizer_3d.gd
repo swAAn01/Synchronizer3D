@@ -116,7 +116,7 @@ func _ready() -> void:
 	if synchronize_position: last_pos = sync_node.global_position
 	if synchronize_rotation: last_rot = sync_node.quaternion
 	
-	if not is_multiplayer_authority():
+	if interpolate and not is_multiplayer_authority():
 		sync_node.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
 	
 	if update_mode == UpdateMode.UPDATE_MODE_DELTA:
