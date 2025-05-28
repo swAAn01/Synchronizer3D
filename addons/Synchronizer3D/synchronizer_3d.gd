@@ -248,7 +248,7 @@ func send_updates() -> void:
 	if synchronize_rotation:
 		var cur_rot := sync_node.quaternion
 		if not cur_rot.is_equal_approx(last_rot):
-			update_rot(cur_rot.get_euler())
+			update_rot.rpc(cur_rot.get_euler())
 			last_rot = cur_rot
 
 
