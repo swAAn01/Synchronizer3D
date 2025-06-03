@@ -37,7 +37,6 @@ class_name Synchronizer3D extends Node
 ## This node should only be added to the [SceneTree] once the [MultiplayerAPI] has a [MultiplayerPeer].
 
 
-const SYNC_NODE_ERR_MSG := "SYNC_NODE must be Node3D."
 ## When using [constant UPDATE_MODE_IDLE], it's hard to know what interval peers should expect
 ## since it is dependent on the authority peer's framerate. So we just estimate here that
 ## we'll be receiving 60 updates per second.
@@ -110,7 +109,6 @@ func _ready() -> void:
 	
 	if not sync_node:
 		sync_node = get_parent()
-		if sync_node is not Node3D: push_error(SYNC_NODE_ERR_MSG)
 	
 	if synchronize_position: last_pos = sync_node.global_position
 	if synchronize_rotation: last_rot = sync_node.quaternion
