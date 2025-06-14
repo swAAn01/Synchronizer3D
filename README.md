@@ -17,6 +17,14 @@ Most of the functions in this class should not be touched with the exception of 
 
 Compared to MultiplayerSynchronizer, we see ~90% bandwidth reduction for syncing position and rotation.
 
+Here is a simple test scene to demonstrate it. In both scenarios, we are synchronizing only position and rotation, and using "physics" update mode.
+
+MultiplayerSynchronizer: ![image](https://github.com/user-attachments/assets/6becd53b-2d8e-4e2c-a365-6181a3ea6a38)
+
+Synchronizer3D: ![image](https://github.com/user-attachments/assets/67e434bd-d9b7-4258-95e5-08967c23380a)
+
+The MultiplayerSynchronizer is using update mode "Always" as opposed to on-change. Comparing to the "on-change" option wouldn't be an appropriate test, as MultiplayerSynchronizer uses "reliable" rpc mode to facilitate that.
+
 Getting the interpolation/extrapolation to look smooth is highly situation-dependent, which is why this node is highly configurable.
 Play with the settings to find the setup that is correct for your game.
 
