@@ -3,7 +3,7 @@
 Synchronizer3D serves as an alternative to MultiplayerSynchronizer for synchronizing position and rotation properties for a `Node3D`.
 
 ## Motivation
-MultiplayerSynchronizer is an extremely useful node for prototyping, but it has a number of limitations. This addresses two such limitations in particular: being unable to use `MultiplayerPeer.TRANSFER_MODE_UNRELIABLE` for on-change updates, and being unable to interpolate/extrapolate between received updates. Compared to MultiplayerSynchronizer, we also see ~90% bandwidth reduction for syncing position and rotation.
+MultiplayerSynchronizer is an extremely useful node for prototyping, but it has a number of limitations. This addresses two such limitations in particular: being unable to use `MultiplayerPeer.TRANSFER_MODE_UNRELIABLE` for on-change updates, and being unable to interpolate/extrapolate between received updates.
 
 ## How it Works
 Every update interval, the authority node will check `sync_node` for property changes. If changes exist, the authority will send an update to each other connected peer. Non-authority peers will interpolate/extrapolate between received updates if enabled.
@@ -12,6 +12,13 @@ Every update interval, the authority node will check `sync_node` for property ch
 To use Synchronizer3D simply add it as a child of the node you wish to synchronize properties for, and configure it in the inspector. You can specify which properties to synchronize, when the authority should send updates, and whether non-authority peers should interpolate and/or extrapolate between updates.
 
 Most of the functions in this class should not be touched with the exception of `force_update()`, which can be used by the authority to reliably force a node's current properties. This is particularly useful in situations like teleporting the `sync_node`.
+
+## Benefits
+
+Compared to MultiplayerSynchronizer, we see ~90% bandwidth reduction for syncing position and rotation.
+
+Getting the interpolation/extrapolation to look smooth is highly situation-dependent, which is why this node is highly configurable.
+Play with the settings to find the setup that is correct for your game.
 
 ## Limitations
 The main limitation of this node comes from its greatest strength: synchronizing only position and rotation. This means Synchronizer3D lacks the flexiblity of MultiplayerSynchronizer, but this drawback comes with the benefits of interpolation and extrapolation, and bandwidth optimization. That being said, there are other limitations as well:
