@@ -24,6 +24,8 @@ class_name Synchronizer3D extends Node
 ## The main limitation of this node comes from its greatest strength: synchronizing only position and rotation.
 ## This means [Synchronizer3D] lacks the flexiblity of [MultiplayerSynchronizer], but this drawback comes with
 ## the benefits of interpolation and extrapolation, and bandwidth optimization.
+## In a simple apples-to-apples comparison, I've found in my testing that this optimization is associated with a ~90% bandwidth reduction
+## compared to [MultiplayerSynchronizer] for syncing position and rotation.
 ## That being said, there are other limitations as well:[br]
 ## [Synchronizer3D] can only be used to synchronize position and rotation for a [Node3D] (and classes that extend [Node3D]).[br]
 ## For non-authority peers, the [member Node.physics_interpolation_mode] of [member sync_node]
