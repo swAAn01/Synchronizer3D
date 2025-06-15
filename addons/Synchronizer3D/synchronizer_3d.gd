@@ -196,6 +196,8 @@ func update_rot(e_rot: Vector3) -> void:
 						end_rot_set = false
 					else:
 						end_rot = rot
+				else:
+					end_rot = rot
 				rot_delta = fmod(rot_delta, get_update_interval())
 			else:
 				end_rot = rot
